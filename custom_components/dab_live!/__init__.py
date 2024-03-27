@@ -6,15 +6,13 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, Config
 from homeassistant.exceptions import ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
-from homeassistant.helpers.update_coordinator import UpdateFailed
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 from homeassistant.const import CONF_EMAIL, CONF_PASSWORD, CONF_SCAN_INTERVAL
 
 from dab_live_api import DAB
 from .const import DOMAIN, DEFAULT_SCAN_INTERVAL, PLATFORMS
 
 _LOGGER: logging.Logger = logging.getLogger(__package__)
-
 
 async def async_setup(hass: HomeAssistant, config: Config):
     """Set up this integration using YAML is not supported."""
@@ -31,8 +29,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
 
     session = async_get_clientsession(hass)
     client = DAB(username, password, session, False)
-
-    logging.warning(entry.options.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL))
     
     coordinator = DABLiveDataUpdateCoordinator(hass, client=client, scan_interval=entry.options.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL))
     await coordinator.async_refresh()
@@ -72,7 +68,6 @@ class DABLiveDataUpdateCoordinator(DataUpdateCoordinator):
     async def _async_update_data(self):
         """Update data via library."""
         try:
-            logging.warning('Updating data')
             return await self.api.discover_installations()
         except Exception as exception:
             raise UpdateFailed() from exception
