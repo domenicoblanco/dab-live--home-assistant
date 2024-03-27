@@ -1,0 +1,23 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Accedi a DAB Live!",
+                "data": {
+                    "password": "Password",
+                    "email": "E-Mail"
+                }
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "title": "Impostazioni di DAB Live!",
+                "data": {
+                    "scan_interval": "Periodo d'aggiornamento (minuti)"
+                }
+            }
+        }
+    }
+}

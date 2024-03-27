@@ -1,0 +1,25 @@
+---
+name: Release custom integration
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  release:
+    name: Prepare release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Zip Release
+        uses: TheDoctor0/zip-release@0.7.6
+        with:
+          filename: dab-live-home-assistant.zip
+          directory: custom_components/dab_live!
+      - name: Upload to Release Action
+        uses: Shopify/upload-to-release@v2.0.0
+        with:
+          name: dab-live-home-assistant.zip
+          path: custom_components/dab_live!/dab-live-home-assistant.zip
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
