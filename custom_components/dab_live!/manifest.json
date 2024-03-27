@@ -1,8 +1,8 @@
 {
   "domain": "dab_live!",
   "name": "DAB Live!",
-  "documentation": "https://github.com/domenicoblanco/DAB_Live!",
-  "issue_tracker": "https://github.com/domenicoblanco/DAB_Live!",
+  "documentation": "https://github.com/domenicoblanco/dab-live-home-assistant",
+  "issue_tracker": "https://github.com/domenicoblanco/dab-live-home-assistant/issues",
   "requirements": ["dab-live-api==0.0.2"],
   "codeowners": ["@domenicoblanco"],
   "integration_type": "hub",
