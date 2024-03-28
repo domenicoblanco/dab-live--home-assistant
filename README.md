@@ -3,7 +3,7 @@ An Home Assistant custom integration for DAB Live!
 
 ## Use case
 As of the writing of these README, there isn't an official way to integrate DAB Live! with Home Assistant or Siri.
-The idea behind this project is to provide a simple way to enable functions like power shower and consumptions monitoring in a simple way.
+The idea behind this project is to provide a simple way to enable functions like power shower and consumptions monitoring.
 
 ## Installation
 Just add this repository to HACS and add your integration to Home Assitant.
