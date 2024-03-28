@@ -1,12 +1,12 @@
 {
   "domain": "dab_live!",
   "name": "DAB Live!",
-  "documentation": "https://github.com/domenicoblanco/dab-live-home-assistant",
-  "issue_tracker": "https://github.com/domenicoblanco/dab-live-home-assistant/issues",
-  "requirements": ["dab-live-api==0.0.2"],
   "codeowners": ["@domenicoblanco"],
+  "config_flow": true,
+  "documentation": "https://github.com/domenicoblanco/dab-live-home-assistant",
   "integration_type": "hub",
   "iot_class": "cloud_polling",
-  "config_flow": true,
+  "issue_tracker": "https://github.com/domenicoblanco/dab-live-home-assistant/issues",
+  "requirements": ["dab-live-api==0.0.2"],
   "version": "0.0.1"
 }
