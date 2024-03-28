@@ -1,6 +1,7 @@
 import voluptuous as vol
 from homeassistant import config_entries
 from homeassistant.core import callback
+from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers.aiohttp_client import async_create_clientsession
 from homeassistant.helpers.selector import NumberSelector, NumberSelectorConfig, NumberSelectorMode
 from homeassistant.const import CONF_EMAIL, CONF_PASSWORD, CONF_SCAN_INTERVAL
@@ -8,6 +9,10 @@ from .const import DOMAIN, DEFAULT_SCAN_INTERVAL
 
 from dab_live_api import DAB
 
+CONFIG_SCHEMA = vol.Schema({
+    vol.Required(CONF_EMAIL): cv.string,
+    vol.Required(CONF_PASSWORD): cv.string
+})
 
 class DABLiveFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     """Config flow for DAB Live!."""
@@ -42,10 +47,7 @@ class DABLiveFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         """Show the configuration form to edit location data."""
         return self.async_show_form(
             step_id="user",
-            data_schema=vol.Schema({
-                vol.Required(CONF_EMAIL): str,
-                vol.Required(CONF_PASSWORD): str
-            }),
+            data_schema=CONFIG_SCHEMA,
             errors=self._errors,
         )
 
@@ -83,7 +85,7 @@ class DABLiveOptionsFlow(config_entries.OptionsFlow):
         return self.async_show_form(
             step_id='init',
             data_schema=vol.Schema({
-                vol.Optional(CONF_SCAN_INTERVAL, default=scan_interval): NumberSelector(NumberSelectorConfig(min=1, step=1, unit_of_measurement='m', mode=NumberSelectorMode.BOX))
+                vol.Optional(CONF_SCAN_INTERVAL, default=scan_interval): cv.positive_int
             }), 
             last_step=True
         )
