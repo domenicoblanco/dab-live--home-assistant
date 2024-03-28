@@ -3,7 +3,6 @@ from homeassistant import config_entries
 from homeassistant.core import callback
 from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers.aiohttp_client import async_create_clientsession
-from homeassistant.helpers.selector import NumberSelector, NumberSelectorConfig, NumberSelectorMode
 from homeassistant.const import CONF_EMAIL, CONF_PASSWORD, CONF_SCAN_INTERVAL
 from .const import DOMAIN, DEFAULT_SCAN_INTERVAL
 
