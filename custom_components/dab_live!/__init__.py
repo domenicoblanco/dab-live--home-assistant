@@ -1,10 +1,12 @@
 import asyncio
 import logging
+import voluptuous as vol
 from datetime import timedelta
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, Config
 from homeassistant.exceptions import ConfigEntryNotReady
+from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 from homeassistant.const import CONF_EMAIL, CONF_PASSWORD, CONF_SCAN_INTERVAL
@@ -13,6 +15,7 @@ from dab_live_api import DAB
 from .const import DOMAIN, DEFAULT_SCAN_INTERVAL, PLATFORMS
 
 _LOGGER: logging.Logger = logging.getLogger(__package__)
+CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
 
 async def async_setup(hass: HomeAssistant, config: Config):
     """Set up this integration using YAML is not supported."""
