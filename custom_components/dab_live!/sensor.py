@@ -1,7 +1,7 @@
 from . import const
 from .entity import DABLiveEntity
 from homeassistant.const import UnitOfEnergy, UnitOfVolume
-from homeassistant.components.sensor import SensorDeviceClass, SensorStateClass
+from homeassistant.components.sensor import SensorDeviceClass, SensorStateClass, SensorEntity
 
 
 async def async_setup_entry(hass, entry, async_add_devices):
@@ -16,7 +16,7 @@ async def async_setup_entry(hass, entry, async_add_devices):
     
     async_add_devices(entities)
 
-class DABLiveSensor(DABLiveEntity):
+class DABLiveSensor(DABLiveEntity, SensorEntity):
     """Sensor class."""
     def __init__(self, coordinator, config_entry, zone: dict, pump_id: str, sensor_type: str):
         self.zone = zone

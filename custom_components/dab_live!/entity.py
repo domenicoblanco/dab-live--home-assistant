@@ -15,12 +15,12 @@ class DABLiveEntity(CoordinatorEntity):
     def device_info(self):
         product_type = self.zone['pumps'][self.pump_id].get('ProductType')
         return {
-            "hw_version": product_type,
-            "identifiers": {(DOMAIN, self.zone['id'])},
-            "name": self.zone['name'],
-            "manufacturer": self.zone['company'],
-            "model":  MODELS.get(product_type, product_type),
-            "serial_number": self.zone['pumps'][self.pump_id].get('ProductSerialNumber'),
+            'hw_version': product_type,
+            'identifiers': {(DOMAIN, self.zone['id'])},
+            'name': self.zone['name'],
+            'manufacturer': self.zone['company'],
+            'model':  MODELS.get(product_type, product_type),
+            'serial_number': self.zone['pumps'][self.pump_id].get('ProductSerialNumber'),
             'sw_version': self.zone['pumps'][self.pump_id].get('LvVersion')
         }
 
@@ -28,9 +28,8 @@ class DABLiveEntity(CoordinatorEntity):
     def device_state_attributes(self):
         """Return the state attributes."""
         return {
-            "attribution": ATTRIBUTION,
-            "id": str(self.zone.get("id")),
-            "integration": DOMAIN,
-            "manufacturer": self.zone['company'],
-            'unit_of_measurement': self.__unit_of_measurement
+            'attribution': ATTRIBUTION,
+            'id': str(self.zone.get('id')),
+            'integration': DOMAIN,
+            'manufacturer': self.zone['company']
         }
